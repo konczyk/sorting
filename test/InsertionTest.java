@@ -3,6 +3,8 @@ import junitparams.Parameters;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.util.Comparator;
+
 import static org.junit.Assert.assertArrayEquals;
 
 @RunWith(JUnitParamsRunner.class)
@@ -20,5 +22,12 @@ public class InsertionTest {
     public void sortsUsingComparator(Object[] input) {
         Insertion.sort(input, ComparatorDataProvider.COMPARATOR);
         assertArrayEquals(ComparatorDataProvider.EXPECTED, input);
+    }
+
+    @Test
+    @Parameters(source = ComparableDuplicateDataProvider.class)
+    public void sortsStableUsingComparator(Comparable[] input) {
+        Insertion.sort(input);
+        assertArrayEquals(ComparableDuplicateDataProvider.EXPECTED, input);
     }
 }

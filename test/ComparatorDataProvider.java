@@ -2,9 +2,9 @@ import java.util.Comparator;
 
 public class ComparatorDataProvider {
 
-    public static final Comparator<Item> COMPARATOR = new Item.ByFirstParam();
+    public static final Comparator<Item> COMPARATOR = new Item.ByParam();
 
-    public static Item[] EXPECTED = {
+    public static final Item[] EXPECTED = {
         new Item(1), new Item(5), new Item(7), new Item(100), new Item(112)
     };
 
@@ -25,29 +25,28 @@ public class ComparatorDataProvider {
     // test class
     private static class Item {
 
-        private int param1;
+        private int param;
 
-        public Item(int p1) {
-            param1 = p1;
+        public Item(int p) {
+            param = p;
         }
 
         @Override
         public boolean equals(Object other) {
-            return this.param1 == ((Item) other).param1;
+            return this.param == ((Item) other).param;
         }
 
         @Override
         public String toString() {
-            return Integer.toString(param1);
+            return Integer.toString(param);
         }
 
-        public static class ByFirstParam implements Comparator<Item> {
+        public static class ByParam implements Comparator<Item> {
 
             public int compare(Item a, Item b) {
-                return a.param1 - b.param1;
+                return a.param - b.param;
             }
 
         }
-
     }
 }
