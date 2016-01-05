@@ -1,6 +1,10 @@
 # Sorting algorithms
 
-Java implementations of selected sorting algorithms.
+Java implementations of various sorting algorithms.
+
+## Selection sort
+
+Uses ~N<sup>2</sup>/2 compares and N exchanges to sort an array of length N.
 
 ## Examples
 
