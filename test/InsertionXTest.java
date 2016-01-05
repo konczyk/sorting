@@ -6,19 +6,19 @@ import org.junit.runner.RunWith;
 import junitparams.*;
 
 @RunWith(JUnitParamsRunner.class)
-public class SelectionTest {
+public class InsertionXTest {
 
     @Test
     @Parameters(source = ComparableDataProvider.class)
     public void sortsUsingComparable(Comparable[] input) {
-        Selection.sort(input);
+        InsertionX.sort(input);
         assertArrayEquals(ComparableDataProvider.EXPECTED, input);
     }
 
     @Test
-    @Parameters(source = ComparatorDataProvider.class)
-    public void sortsUsingComparator(Object[] input) {
-        Selection.sort(input, ComparatorDataProvider.COMPARATOR);
-        assertArrayEquals(ComparatorDataProvider.EXPECTED, input);
+    @Parameters(source = ComparableDuplicateDataProvider.class)
+    public void sortsStableUsingComparable(Comparable[] input) {
+        InsertionX.sort(input);
+        assertArrayEquals(ComparableDuplicateDataProvider.EXPECTED, input);
     }
 }

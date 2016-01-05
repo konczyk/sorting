@@ -1,11 +1,9 @@
-import junitparams.JUnitParamsRunner;
-import junitparams.Parameters;
+import static org.junit.Assert.assertArrayEquals;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.Comparator;
-
-import static org.junit.Assert.assertArrayEquals;
+import junitparams.*;
 
 @RunWith(JUnitParamsRunner.class)
 public class InsertionTest {
