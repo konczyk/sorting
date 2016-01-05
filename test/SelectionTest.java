@@ -10,14 +10,14 @@ public class SelectionTest {
 
     @Test
     @Parameters(source = ComparableDataProvider.class)
-    public void sortsUsingSelectionAndComparable(Comparable[] input) {
+    public void sortsUsingComparable(Comparable[] input) {
         Selection.sort(input);
         assertArrayEquals(ComparableDataProvider.EXPECTED, input);
     }
 
     @Test
     @Parameters(source = ComparatorDataProvider.class)
-    public void sortsUsingSelectionAndComparator(Object[] input) {
+    public void sortsUsingComparator(Object[] input) {
         Selection.sort(input, ComparatorDataProvider.COMPARATOR);
         assertArrayEquals(ComparatorDataProvider.EXPECTED, input);
     }
