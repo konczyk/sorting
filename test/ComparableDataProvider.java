@@ -1,6 +1,6 @@
 public class ComparableDataProvider {
 
-    public static Integer[] EXPECTED = {
+    public static Comparable[] EXPECTED = {
         1, 4, 7, 9, 15, 17, 23, 34, 44, 46, 47, 77, 88, 91, 95
     };
 
@@ -14,4 +14,5 @@ public class ComparableDataProvider {
             new Integer[] {1,4,7,9,15,17,23,34,44,46,47,77,88,91,95}
         };
     }
+
 }

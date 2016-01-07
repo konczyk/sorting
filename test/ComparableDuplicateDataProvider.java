@@ -1,6 +1,6 @@
 public class ComparableDuplicateDataProvider {
 
-    public static final Item[] EXPECTED = {
+    public static final Comparable[] EXPECTED = {
         new Item("A", 2), new Item("A", 3), new Item("B", 1),
         new Item("C", 2), new Item("D", 1), new Item("D", 2)
     };
@@ -9,7 +9,7 @@ public class ComparableDuplicateDataProvider {
         return new Object[]{
             new Item[]{
                 new Item("A", 2), new Item("D", 1), new Item("B", 1),
-                new Item("C", 2), new Item("A", 3), new Item("D", 2)
+                new Item("C", 2), new Item("D", 2), new Item("A", 3)
             },
         };
     }

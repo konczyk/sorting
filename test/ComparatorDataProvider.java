@@ -4,7 +4,7 @@ public class ComparatorDataProvider {
 
     public static final Comparator<Item> COMPARATOR = new Item.ByParam();
 
-    public static final Item[] EXPECTED = {
+    public static final Object[] EXPECTED = {
         new Item(1), new Item(5), new Item(7), new Item(100), new Item(112)
     };
 
