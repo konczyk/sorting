@@ -16,16 +16,17 @@ public class InsertionTest {
     }
 
     @Test
+    @Parameters(source = ComparableDuplicateDataProvider.class)
+    public void sortsStableUsingComparable(Comparable[] input) {
+        Insertion.sort(input);
+        assertArrayEquals(ComparableDuplicateDataProvider.EXPECTED, input);
+    }
+
+    @Test
     @Parameters(source = ComparatorDataProvider.class)
     public void sortsUsingComparator(Object[] input) {
         Insertion.sort(input, ComparatorDataProvider.COMPARATOR);
         assertArrayEquals(ComparatorDataProvider.EXPECTED, input);
     }
 
-    @Test
-    @Parameters(source = ComparableDuplicateDataProvider.class)
-    public void sortsStableUsingComparator(Comparable[] input) {
-        Insertion.sort(input);
-        assertArrayEquals(ComparableDuplicateDataProvider.EXPECTED, input);
-    }
 }
