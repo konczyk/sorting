@@ -13,6 +13,7 @@ public class Compare {
         "Selection",
         "Insertion",
         "InsertionX",
+        "Shell",
     };
 
     private static void sort(String algorithm, Integer[] input) {
@@ -24,6 +25,8 @@ public class Compare {
             Insertion.sort(input);
         else if (algorithm.equals("InsertionX"))
             InsertionX.sort(input);
+        else if (algorithm.equals("Shell"))
+            Shell.sort(input);
     }
 
     // compute average sorting time
@@ -60,8 +63,7 @@ public class Compare {
 
         for (String algorithm: ALGORITHMS) {
             double time = time(algorithm, size, repeat);
-            System.out.println(algorithm + ":\t" +
-                               String.format("%.4f", time) + "s");
+            System.out.println(String.format("%-12s %.4fs", algorithm, time));
         }
     }
 }
