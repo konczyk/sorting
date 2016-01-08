@@ -11,12 +11,23 @@ Uses ~N<sup>2</sup>/2 compares and N exchanges to sort an array of length N.
 Uses ~N<sup>2</sup>/4 compares and ~N<sup>2</sup>/4 exchanges to
 sort a randomly ordered array of length N with distinct keys, on average.
 
+Improved version uses sentinel and half exchanges to reduce data movement.
+
 ## Shell sort
 
 Uses ~N<sup>3/2</sup> compares with the Knuth's increment sequence (3x+1). An
 extension of insertion sort that uses long distance exchanges to produce
 partially ordered arrays, which can be more efficiently sorted with insertion
 sort.
+
+## Merge sort
+
+Uses between 1/2 N log N and N log N compares to sort an array of length N.
+
+Improved version uses insertion sort for small subarrays, tests for ordered
+array and optimizes time taken to copy temp arrays.
+
+Bottom-up version does not use recursion.
 
 ## Examples
 

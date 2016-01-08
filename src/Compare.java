@@ -14,6 +14,7 @@ public class Compare {
         "Insertion",
         "InsertionX",
         "Shell",
+        "Merge",
     };
 
     private static void sort(String algorithm, Integer[] input) {
@@ -27,6 +28,8 @@ public class Compare {
             InsertionX.sort(input);
         else if (algorithm.equals("Shell"))
             Shell.sort(input);
+        else if (algorithm.equals("Merge"))
+            Merge.sort(input);
     }
 
     // compute average sorting time
