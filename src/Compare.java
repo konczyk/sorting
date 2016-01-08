@@ -17,6 +17,10 @@ public class Compare {
         "Merge",
     };
 
+    private static final String[] QUADRATICS = {
+        "Selection", "Insertion", "InsertionX"
+    };
+
     private static void sort(String algorithm, Integer[] input) {
         if (algorithm.equals("Built-in"))
             Arrays.sort(input);
@@ -60,13 +64,27 @@ public class Compare {
         return input;
     }
 
+    private static boolean isQuadratic(String algorithm) {
+        for (String quadratic: QUADRATICS) {
+            if (algorithm.equals(quadratic))
+                return true;
+        }
+
+        return false;
+    }
+
     public static void main(String[] args) {
         int size = Integer.parseInt(args[0]);
         int repeat = Integer.parseInt(args[1]);
+        boolean noquadratic = false;
+        if (args.length == 3 && args[2].equals("noquad"))
+            noquadratic = true;
 
         for (String algorithm: ALGORITHMS) {
-            double time = time(algorithm, size, repeat);
-            System.out.println(String.format("%-12s %.4fs", algorithm, time));
+            if (!noquadratic || !isQuadratic(algorithm)) {
+                double time = time(algorithm, size, repeat);
+                System.out.println(String.format("%-12s %.4fs", algorithm, time));
+            }
         }
     }
 }
