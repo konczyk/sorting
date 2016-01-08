@@ -5,7 +5,7 @@ public class Merge {
 
     // sort input array using natural order
     public static void sort(Comparable[] input) {
-        Comparable[] tmp = input.clone();
+        Comparable[] tmp = new Comparable[input.length];
         sort(input, tmp, 0, input.length - 1);
     }
 
