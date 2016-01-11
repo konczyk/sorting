@@ -40,7 +40,7 @@ public class MergeX {
             // left half already merged in
             if (i > mid) {
                 input[k] = tmp[j++];
-                // right part already merged in
+            // right half already merged in
             } else if (j > right) {
                 input[k] = tmp[i++];
             } else if (tmp[j].compareTo(tmp[i]) < 0) {
