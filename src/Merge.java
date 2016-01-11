@@ -12,8 +12,9 @@ public class Merge {
     private static void sort(Comparable[] input, Comparable[] tmp,
                              int left, int right) {
         // base case
-        if (right <= left)
+        if (right <= left) {
             return;
+        }
 
         int mid = (left + right) / 2;
         // recursive calls
@@ -26,21 +27,21 @@ public class Merge {
     private static void merge(Comparable[] input, Comparable[] tmp,
                              int left, int mid, int right) {
         // copy items to be merged into tmp array
-        for (int i = left; i <= right; i++)
-            tmp[i] = input[i];
+        System.arraycopy(input, left, tmp, left, right - left + 1);
 
         int i = left, j = mid + 1;
         for (int k = left; k <= right; k++) {
             // left half already merged in
-            if (i > mid)
+            if (i > mid) {
                 input[k] = tmp[j++];
-            // right part already merged in
-            else if (j > right)
+                // right part already merged in
+            } else if (j > right) {
                 input[k] = tmp[i++];
-            else if (tmp[j].compareTo(tmp[i]) < 0)
+            } else if (tmp[j].compareTo(tmp[i]) < 0) {
                 input[k] = tmp[j++];
-            else
+            } else {
                 input[k] = tmp[i++];
+            }
         }
 
     }

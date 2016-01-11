@@ -11,15 +11,17 @@ public class Shell {
 
         // find the biggest h
         int h = 1;
-        while (h < size/3)
+        while (h < size/3) {
             h = 3*h + 1;
+        }
 
         while (h >= 1) {
             // h-sort array using modified insertion sort
             for (int i = h; i < size; i++) {
                 // swap item with previous ones as long as it is smaller
-                for (int j = i; j >= h && input[j].compareTo(input[j-h]) < 0; j -= h)
+                for (int j = i; j >= h && input[j].compareTo(input[j-h]) < 0; j -= h) {
                     swap(input, j, j-h);
+                }
             }
 
             h /= 3;

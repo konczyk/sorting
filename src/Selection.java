@@ -7,13 +7,14 @@ public class Selection {
 
     // sort input array using natural order
     public static void sort(Comparable[] input) {
-        int size = input.length;
-        for (int i = 0; i < size; i++) {
+        int inputLength = input.length;
+        for (int i = 0; i < inputLength; i++) {
             int min = i;
-            for (int j = i + 1; j < size; j++) {
+            for (int j = i + 1; j < inputLength; j++) {
                 // check if item is less than current min
-                if (input[j].compareTo(input[min]) < 0)
+                if (input[j].compareTo(input[min]) < 0) {
                     min = j;
+                }
             }
             // swap current item with min
             swap(input, i, min);
@@ -22,13 +23,14 @@ public class Selection {
 
     // sort input array using comparator
     public static void sort(Object[] input, Comparator comp) {
-        int size = input.length;
-        for (int i = 0; i < size; i++) {
+        int inputLength = input.length;
+        for (int i = 0; i < inputLength; i++) {
             int min = i;
-            for (int j = i + 1; j < size; j++) {
+            for (int j = i + 1; j < inputLength; j++) {
                 // check if item is less than current min
-                if (comp.compare(input[j], input[min]) < 0)
+                if (comp.compare(input[j], input[min]) < 0) {
                     min = j;
+                }
             }
             // swap current item with min
             swap(input, i, min);

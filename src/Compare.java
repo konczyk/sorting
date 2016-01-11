@@ -24,22 +24,23 @@ public class Compare {
     };
 
     private static void sort(String algorithm, Integer[] input) {
-        if (algorithm.equals("Built-in"))
+        if (algorithm.equals("Built-in")) {
             Arrays.sort(input);
-        else if (algorithm.equals("Selection"))
+        } else if (algorithm.equals("Selection")) {
             Selection.sort(input);
-        else if (algorithm.equals("Insertion"))
+        } else if (algorithm.equals("Insertion")) {
             Insertion.sort(input);
-        else if (algorithm.equals("InsertionX"))
+        } else if (algorithm.equals("InsertionX")) {
             InsertionX.sort(input);
-        else if (algorithm.equals("Shell"))
+        } else if (algorithm.equals("Shell")) {
             Shell.sort(input);
-        else if (algorithm.equals("Merge"))
+        } else if (algorithm.equals("Merge")) {
             Merge.sort(input);
-        else if (algorithm.equals("MergeX"))
+        } else if (algorithm.equals("MergeX")) {
             MergeX.sort(input);
-        else if (algorithm.equals("MergeB"))
+        } else if (algorithm.equals("MergeB")) {
             MergeB.sort(input);
+        }
     }
 
     // compute average sorting time
@@ -72,8 +73,9 @@ public class Compare {
 
     private static boolean isQuadratic(String algorithm) {
         for (String quadratic: QUADRATICS) {
-            if (algorithm.equals(quadratic))
+            if (algorithm.equals(quadratic)) {
                 return true;
+            }
         }
 
         return false;
@@ -83,8 +85,9 @@ public class Compare {
         int size = Integer.parseInt(args[0]);
         int repeat = Integer.parseInt(args[1]);
         boolean noquadratic = false;
-        if (args.length == 3 && args[2].equals("noquad"))
+        if (args.length == 3 && args[2].equals("noquad")) {
             noquadratic = true;
+        }
 
         for (String algorithm: ALGORITHMS) {
             if (!noquadratic || !isQuadratic(algorithm)) {

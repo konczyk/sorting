@@ -17,17 +17,20 @@ public class InsertionX {
         }
 
         // no exchanges mean we have an ordered input
-        if (exchanges == 0)
+        if (exchanges == 0) {
             return;
+        }
 
         // sort using half exchanges
         for (int i = 2; i < input.length; i++) {
             // save current item
             Comparable item = input[i];
-            // move previous items one to the right if they are bigger than item
+            // move previous items one to the right
+            // if they are bigger than item
             int j;
-            for (j = i; item.compareTo(input[j-1]) < 0; j--)
-                input[j] = input[j-1];
+            for (j = i; item.compareTo(input[j - 1]) < 0; j--) {
+                input[j] = input[j - 1];
+            }
             // put item in place
             input[j] = item;
         }
