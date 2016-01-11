@@ -16,6 +16,7 @@ public class Compare {
         "Shell",
         "Merge",
         "MergeX",
+        "MergeB",
     };
 
     private static final String[] QUADRATICS = {
@@ -37,6 +38,8 @@ public class Compare {
             Merge.sort(input);
         else if (algorithm.equals("MergeX"))
             MergeX.sort(input);
+        else if (algorithm.equals("MergeB"))
+            MergeB.sort(input);
     }
 
     // compute average sorting time
