@@ -40,8 +40,22 @@ and 50 test repetitions for each algorithm:
 
     $ java -cp build/libs/sorting.jar Compare 10000 50
 
-    Built-in     0.0043s
-    Selection    0.2233s
-    Insertion    0.1042s
-    InsertionX   0.0651s
+    Built-in     0.0042s
+    Selection    0.2270s
+    Insertion    0.1065s
+    InsertionX   0.0668s
     Shell        0.0019s
+    Merge        0.0025s
+    MergeX       0.0018s
+    MergeB       0.0022s
+
+Compare average running time using a randomly generated array of 1000000
+integers and 50 test repetitions for each, non-quadratic algorithm:
+
+    $ java -cp build/libs/sorting.jar Compare 1000000 50 noquad
+
+    Built-in     0.2526s
+    Shell        0.9120s
+    Merge        0.2665s
+    MergeX       0.2363s
+    MergeB       0.3224s
