@@ -14,7 +14,7 @@ public class MergeX {
 
     private static void sort(Comparable[] input, Comparable[] tmp,
                              int left, int right) {
-        // use insertion small for small subarrays
+        // use insertion sort for small subarrays
         if (right - left <= THRESHOLD) {
             insertionSort(input, left, right);
         } else {
