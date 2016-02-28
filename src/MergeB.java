@@ -22,15 +22,12 @@ public class MergeB {
 
     private static void merge(Comparable[] input, Comparable[] tmp,
                              int left, int mid, int right) {
-        // copy items to be merged into tmp array
         System.arraycopy(input, left, tmp, left, right - left + 1);
 
         int i = left, j = mid + 1;
         for (int k = left; k <= right; k++) {
-            // left half already merged in
             if (i > mid) {
                 input[k] = tmp[j++];
-            // right part already merged in
             } else if (j > right) {
                 input[k] = tmp[i++];
             } else if (tmp[j].compareTo(tmp[i]) < 0) {

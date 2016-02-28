@@ -11,12 +11,10 @@ public class Selection {
         for (int i = 0; i < inputLength; i++) {
             int min = i;
             for (int j = i + 1; j < inputLength; j++) {
-                // check if item is less than current min
                 if (input[j].compareTo(input[min]) < 0) {
                     min = j;
                 }
             }
-            // swap current item with min
             swap(input, i, min);
         }
     }
@@ -27,12 +25,10 @@ public class Selection {
         for (int i = 0; i < inputLength; i++) {
             int min = i;
             for (int j = i + 1; j < inputLength; j++) {
-                // check if item is less than current min
                 if (comp.compare(input[j], input[min]) < 0) {
                     min = j;
                 }
             }
-            // swap current item with min
             swap(input, i, min);
         }
     }

@@ -3,8 +3,7 @@
  */
 public class MergeX {
 
-    // array size threshold to switch to insertion sort
-    private static final int THRESHOLD = 10;
+    private static final int INSERTION_THRESHOLD = 10;
 
     // sort input array using natural order
     public static void sort(Comparable[] input) {
@@ -14,8 +13,8 @@ public class MergeX {
 
     private static void sort(Comparable[] input, Comparable[] tmp,
                              int left, int right) {
-        // use insertion sort for small subarrays
-        if (right - left <= THRESHOLD) {
+
+        if (right - left <= INSERTION_THRESHOLD) {
             insertionSort(input, left, right);
         } else {
             int mid = (left + right) / 2;
@@ -37,10 +36,8 @@ public class MergeX {
                              int left, int mid, int right) {
         int i = left, j = mid + 1;
         for (int k = left; k <= right; k++) {
-            // left half already merged in
             if (i > mid) {
                 input[k] = tmp[j++];
-            // right half already merged in
             } else if (j > right) {
                 input[k] = tmp[i++];
             } else if (tmp[j].compareTo(tmp[i]) < 0) {
@@ -54,10 +51,11 @@ public class MergeX {
     private static void insertionSort(Comparable[] input, int left, int right) {
         for (int i = left; i <= right; i++) {
             for (int j = i; j > left && input[j].compareTo(input[j-1]) < 0; j--) {
-                swap(input, j, j - 1);
+                swap(input, j, j-1);
             }
         }
     }
+
     // swap input array items indexed by i and j
     private static void swap(Object[] input, int i, int j) {
         Object tmp = input[i];

@@ -11,27 +11,22 @@ public class InsertionX {
         int exchanges = 0;
         for (int i = input.length - 1; i > 0; i--) {
             if (input[i].compareTo(input[i-1]) < 0) {
-                swap(input, i, i - 1);
+                swap(input, i, i-1);
                 exchanges++;
             }
         }
 
-        // no exchanges mean we have an ordered input
         if (exchanges == 0) {
             return;
         }
 
         // sort using half exchanges
         for (int i = 2; i < input.length; i++) {
-            // save current item
             Comparable item = input[i];
-            // move previous items one to the right
-            // if they are bigger than item
             int j;
-            for (j = i; item.compareTo(input[j - 1]) < 0; j--) {
-                input[j] = input[j - 1];
+            for (j = i; item.compareTo(input[j-1]) < 0; j--) {
+                input[j] = input[j-1];
             }
-            // put item in place
             input[j] = item;
         }
     }

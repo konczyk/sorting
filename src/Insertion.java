@@ -8,9 +8,8 @@ public class Insertion {
     // sort input array using natural order
     public static void sort(Comparable[] input) {
         for (int i = 0; i < input.length; i++) {
-            // swap item with previous ones as long as it is smaller
             for (int j = i; j > 0 && input[j].compareTo(input[j-1]) < 0; j--) {
-                swap(input, j, j - 1);
+                swap(input, j, j-1);
             }
         }
     }
@@ -18,9 +17,8 @@ public class Insertion {
     // sort input array using comparator
     public static void sort(Object[] input, Comparator comp) {
         for (int i = 0; i < input.length; i++) {
-            // swap item with previous ones as long as it is smaller
             for (int j = i; j > 0 && comp.compare(input[j], input[j-1]) < 0; j--) {
-                swap(input, j, j - 1);
+                swap(input, j, j-1);
             }
         }
     }
