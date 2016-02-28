@@ -25,7 +25,7 @@ public class ComparatorDataProvider {
     // test class
     public static class Item {
 
-        private int param;
+        private final int param;
 
         public Item(int p) {
             param = p;

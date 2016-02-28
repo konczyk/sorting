@@ -17,8 +17,8 @@ public class ComparableDuplicateDataProvider {
     // test class
     private static class Item implements Comparable<Item> {
 
-        private String param1;
-        private int param2;
+        private final String param1;
+        private final int param2;
 
         public Item(String p1, int p2) {
             param1 = p1;
