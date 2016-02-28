@@ -5,7 +5,7 @@
 public class InsertionX {
 
     // sort input array using natural order
-    public static void sort(Comparable[] input) {
+    public static <T extends Comparable<T>> void sort(T[] input) {
 
         // move smallest element to the beginning to act as a sentinel
         int exchanges = 0;
@@ -22,7 +22,7 @@ public class InsertionX {
 
         // sort using half exchanges
         for (int i = 2; i < input.length; i++) {
-            Comparable item = input[i];
+            T item = input[i];
             int j;
             for (j = i; item.compareTo(input[j-1]) < 0; j--) {
                 input[j] = input[j-1];

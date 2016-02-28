@@ -6,13 +6,13 @@ public class MergeX {
     private static final int INSERTION_THRESHOLD = 10;
 
     // sort input array using natural order
-    public static void sort(Comparable[] input) {
-        Comparable[] tmp = input.clone();
+    public static <T extends Comparable<T>> void sort(T[] input) {
+        T[] tmp = input.clone();
         sort(input, tmp, 0, input.length - 1);
     }
 
-    private static void sort(Comparable[] input, Comparable[] tmp,
-                             int left, int right) {
+    private static <T extends Comparable<T>>
+            void sort(T[] input, T[] tmp, int left, int right) {
 
         if (right - left <= INSERTION_THRESHOLD) {
             insertionSort(input, left, right);
@@ -32,8 +32,9 @@ public class MergeX {
         }
     }
 
-    private static void merge(Comparable[] input, Comparable[] tmp,
-                             int left, int mid, int right) {
+    private static <T extends Comparable<T>>
+            void merge(T[] input, T[] tmp, int left, int mid, int right) {
+
         int i = left, j = mid + 1;
         for (int k = left; k <= right; k++) {
             if (i > mid) {
@@ -48,7 +49,9 @@ public class MergeX {
         }
     }
 
-    private static void insertionSort(Comparable[] input, int left, int right) {
+    private static <T extends Comparable<T>>
+            void insertionSort(T[] input, int left, int right) {
+
         for (int i = left; i <= right; i++) {
             for (int j = i; j > left && input[j].compareTo(input[j-1]) < 0; j--) {
                 swap(input, j, j-1);

@@ -11,14 +11,14 @@ public class MergeBTest {
 
     @Test
     @Parameters(source = ComparableDataProvider.class)
-    public void sortsUsingComparable(Comparable[] actual) {
+    public <T extends Comparable<T>> void sortComparables(T[] actual) {
         MergeB.sort(actual);
         assertThat(actual, is(ComparableDataProvider.EXPECTED));
     }
 
     @Test
     @Parameters(source = ComparableDuplicateDataProvider.class)
-    public void sortsStableUsingComparable(Comparable[] actual) {
+    public <T extends Comparable<T>> void sortComparablesIsStable(T[] actual) {
         MergeB.sort(actual);
         assertThat(actual, is(ComparableDuplicateDataProvider.EXPECTED));
     }

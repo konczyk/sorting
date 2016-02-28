@@ -4,13 +4,16 @@
 public class Merge {
 
     // sort input array using natural order
-    public static void sort(Comparable[] input) {
-        Comparable[] tmp = new Comparable[input.length];
+    // the tmp array will contain only T instances copied from input array
+    @SuppressWarnings("unchecked")
+    public static <T extends Comparable<T>> void sort(T[] input) {
+        T[] tmp = (T[]) new Comparable[input.length];
         sort(input, tmp, 0, input.length - 1);
     }
 
-    private static void sort(Comparable[] input, Comparable[] tmp,
-                             int left, int right) {
+    private static <T extends Comparable<T>>
+            void sort(T[] input, T[] tmp, int left, int right) {
+
         if (right <= left) {
             return;
         }
@@ -22,8 +25,9 @@ public class Merge {
         merge(input, tmp, left, mid, right);
     }
 
-    private static void merge(Comparable[] input, Comparable[] tmp,
-                             int left, int mid, int right) {
+    private static <T extends Comparable<T>>
+            void merge(T[] input, T[] tmp, int left, int mid, int right) {
+
         System.arraycopy(input, left, tmp, left, right - left + 1);
 
         int i = left, j = mid + 1;

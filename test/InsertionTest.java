@@ -11,21 +11,21 @@ public class InsertionTest {
 
     @Test
     @Parameters(source = ComparableDataProvider.class)
-    public void sortsUsingComparable(Comparable[] actual) {
+    public <T extends Comparable<T>> void sortComparables(T[] actual) {
         Insertion.sort(actual);
         assertThat(actual, is(ComparableDataProvider.EXPECTED));
     }
 
     @Test
     @Parameters(source = ComparableDuplicateDataProvider.class)
-    public void sortsStableUsingComparable(Comparable[] actual) {
+    public <T extends Comparable<T>> void sortComparablesIsStable(T[] actual) {
         Insertion.sort(actual);
         assertThat(actual, is(ComparableDuplicateDataProvider.EXPECTED));
     }
 
     @Test
     @Parameters(source = ComparatorDataProvider.class)
-    public void sortsUsingComparator(Object[] actual) {
+    public void sortUsingComparator(ComparatorDataProvider.Item[] actual) {
         Insertion.sort(actual, ComparatorDataProvider.COMPARATOR);
         assertThat(actual, is(ComparatorDataProvider.EXPECTED));
     }

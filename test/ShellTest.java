@@ -11,14 +11,14 @@ public class ShellTest {
 
     @Test
     @Parameters(source = ComparableDataProvider.class)
-    public void sortsUsingComparable(Comparable[] actual) {
+    public <T extends Comparable<T>> void sortComparables(T[] actual) {
         Shell.sort(actual);
         assertThat(actual, is(ComparableDataProvider.EXPECTED));
     }
 
     @Test
     @Parameters(source = ComparableDuplicateDataProvider.class)
-    public void sortsUnstableUsingComparable(Comparable[] actual) {
+    public <T extends Comparable<T>> void sortComparablesIsUnstable(T[] actual) {
         Shell.sort(actual);
         assertThat(actual, is(not(ComparableDuplicateDataProvider.EXPECTED)));
     }

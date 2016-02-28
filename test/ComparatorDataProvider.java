@@ -23,7 +23,7 @@ public class ComparatorDataProvider {
     }
 
     // test class
-    private static class Item {
+    public static class Item {
 
         private int param;
 

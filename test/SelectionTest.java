@@ -11,21 +11,21 @@ public class SelectionTest {
 
     @Test
     @Parameters(source = ComparableDataProvider.class)
-    public void sortsUsingComparable(Comparable[] actual) {
+    public <T extends Comparable<T>> void sortComparables(T[] actual) {
         Selection.sort(actual);
         assertThat(actual, is(ComparableDataProvider.EXPECTED));
     }
 
     @Test
     @Parameters(source = ComparableDuplicateDataProvider.class)
-    public void sortsUnstableUsingComparable(Comparable[] actual) {
+    public <T extends Comparable<T>> void sortComparablesIsUnstable(T[] actual) {
         Selection.sort(actual);
         assertThat(actual, is(not(ComparableDuplicateDataProvider.EXPECTED)));
     }
 
     @Test
     @Parameters(source = ComparatorDataProvider.class)
-    public void sortsUsingComparator(Object[] actual) {
+    public void sortUsingComparator(ComparatorDataProvider.Item[] actual) {
         Selection.sort(actual, ComparatorDataProvider.COMPARATOR);
         assertThat(actual, is(ComparatorDataProvider.EXPECTED));
     }

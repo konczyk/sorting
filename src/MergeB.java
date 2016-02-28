@@ -4,9 +4,11 @@
 public class MergeB {
 
     // sort input array using natural order
-    public static void sort(Comparable[] input) {
+    public static <T extends Comparable<T>> void sort(T[] input) {
         int inputLength = input.length;
-        Comparable[] tmp = new Comparable[inputLength];
+        // the tmp array will contain only T instances copied from input array
+        @SuppressWarnings("unchecked")
+        T[] tmp = (T[]) new Comparable[inputLength];
 
         // first loop setting the step size, starting with 1-by-1 merge
         for (int step = 1; step < inputLength; step += step) {
@@ -19,9 +21,9 @@ public class MergeB {
         }
 
     }
+    private static <T extends Comparable<T>>
+            void merge(T[] input, T[] tmp, int left, int mid, int right) {
 
-    private static void merge(Comparable[] input, Comparable[] tmp,
-                             int left, int mid, int right) {
         System.arraycopy(input, left, tmp, left, right - left + 1);
 
         int i = left, j = mid + 1;

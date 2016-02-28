@@ -6,7 +6,7 @@ import java.util.Comparator;
 public class Selection {
 
     // sort input array using natural order
-    public static void sort(Comparable[] input) {
+    public static <T extends Comparable<T>> void sort(T[] input) {
         int inputLength = input.length;
         for (int i = 0; i < inputLength; i++) {
             int min = i;
@@ -20,7 +20,7 @@ public class Selection {
     }
 
     // sort input array using comparator
-    public static void sort(Object[] input, Comparator comp) {
+    public static <T> void sort(T[] input, Comparator<T> comp) {
         int inputLength = input.length;
         for (int i = 0; i < inputLength; i++) {
             int min = i;

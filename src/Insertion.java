@@ -6,7 +6,7 @@ import java.util.Comparator;
 public class Insertion {
 
     // sort input array using natural order
-    public static void sort(Comparable[] input) {
+    public static <T extends Comparable<T>> void sort(T[] input) {
         for (int i = 0; i < input.length; i++) {
             for (int j = i; j > 0 && input[j].compareTo(input[j-1]) < 0; j--) {
                 swap(input, j, j-1);
@@ -15,7 +15,7 @@ public class Insertion {
     }
 
     // sort input array using comparator
-    public static void sort(Object[] input, Comparator comp) {
+    public static <T> void sort(T[] input, Comparator<T> comp) {
         for (int i = 0; i < input.length; i++) {
             for (int j = i; j > 0 && comp.compare(input[j], input[j-1]) < 0; j--) {
                 swap(input, j, j-1);

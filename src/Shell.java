@@ -5,7 +5,7 @@
 public class Shell {
 
     // sort input array using natural order
-    public static void sort(Comparable[] input) {
+    public static <T extends Comparable<T>> void sort(T[] input) {
 
         int size = input.length;
 
