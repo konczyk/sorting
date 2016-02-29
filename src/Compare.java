@@ -66,24 +66,22 @@ public class Compare {
         return QUADRATICS.contains(algorithm);
     }
 
-    public static void main(String[] args) {
-        int size = Integer.parseInt(args[0]);
-        int repeat = Integer.parseInt(args[1]);
-        boolean noquadratic = false;
-        if (args.length == 3 && args[2].equals("noquad")) {
-            noquadratic = true;
-        }
-
-        try {
-            for (String algorithm: ALGORITHMS) {
-                if (!noquadratic || !isQuadratic(algorithm)) {
-                    double time = time(algorithm, size, repeat);
-                    System.out.println(String.format("%-12s %.4fs", algorithm, time));
-                }
+    private static void run(int inputSize, int trials, boolean nonQuadtratic) {
+        String format = "%-12s %.4fs";
+        for (String algorithm: ALGORITHMS) {
+            if (!nonQuadtratic || !isQuadratic(algorithm)) {
+                double time = time(algorithm, inputSize, trials);
+                System.out.println(String.format(format, algorithm, time));
             }
+        }
+    }
+
+    public static void main(String[] args) {
+        CompareConfig conf = CompareConfig.parseConfig(args);
+        try {
+            run(conf.getInputSize(), conf.getTrials(), conf.isNonQuadratic());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-
     }
 }

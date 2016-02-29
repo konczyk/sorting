@@ -36,9 +36,9 @@ Build a jar file:
     $ ./gradlew assemble
 
 Compare average running time using a randomly generated array of 10000 integers
-and 50 test repetitions for each algorithm:
+and 50 trials for each algorithm:
 
-    $ java -cp build/libs/sorting.jar Compare 10000 50
+    $ java -cp build/libs/sorting.jar Compare -i 10000 -t 50
 
     Built-in     0.0042s
     Selection    0.2270s
@@ -50,9 +50,9 @@ and 50 test repetitions for each algorithm:
     MergeB       0.0022s
 
 Compare average running time using a randomly generated array of 1000000
-integers and 50 test repetitions for each, non-quadratic algorithm:
+integers and 50 trials for each, non-quadratic algorithm:
 
-    $ java -cp build/libs/sorting.jar Compare 1000000 50 noquad
+    $ java -cp build/libs/sorting.jar Compare -i 1000000 -t 50 -nq
 
     Built-in     0.2526s
     Shell        0.9120s
