@@ -1,4 +1,6 @@
+import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -8,7 +10,7 @@ public class Compare {
 
     private static final Random RAND = new Random();
 
-    private static final String[] ALGORITHMS = {
+    private static final List<String> ALGORITHMS = Arrays.asList(
         "Built-in",
         "Selection",
         "Insertion",
@@ -16,69 +18,52 @@ public class Compare {
         "Shell",
         "Merge",
         "MergeX",
-        "MergeB",
-    };
+        "MergeB");
 
-    private static final String[] QUADRATICS = {
-        "Selection", "Insertion", "InsertionX"
-    };
+    private static final List<String> QUADRATICS = Arrays.asList(
+        "Selection",
+        "Insertion",
+        "InsertionX");
 
     private static void sort(String algorithm, Integer[] input) {
         if (algorithm.equals("Built-in")) {
             Arrays.sort(input);
-        } else if (algorithm.equals("Selection")) {
-            Selection.sort(input);
-        } else if (algorithm.equals("Insertion")) {
-            Insertion.sort(input);
-        } else if (algorithm.equals("InsertionX")) {
-            InsertionX.sort(input);
-        } else if (algorithm.equals("Shell")) {
-            Shell.sort(input);
-        } else if (algorithm.equals("Merge")) {
-            Merge.sort(input);
-        } else if (algorithm.equals("MergeX")) {
-            MergeX.sort(input);
-        } else if (algorithm.equals("MergeB")) {
-            MergeB.sort(input);
+        } else {
+            try {
+                Class<?> c = Class.forName(algorithm);
+                Method m = c.getMethod("sort", Comparable[].class);
+                m.invoke(null, new Object[]{input});
+            } catch (ReflectiveOperationException e) {
+                throw new IllegalArgumentException(e);
+            }
         }
     }
 
     // compute average sorting time
-    private static double time(String algorithm, int size, int repeat) {
+    private static double time(String algorithm, int inputSize, int trials) {
         double total = 0;
-        for (int i = 0; i < repeat; i++) {
-            // get random input array
-            Integer[] input = genInput(size);
-
-            // time one sort pass
+        for (int i = 0; i < trials; i++) {
             long start = System.currentTimeMillis();
-            sort(algorithm, input);
+            sort(algorithm, genRandomInput(inputSize));
+
             long end = System.currentTimeMillis();
             total += ((end - start) / 1000.0);
         }
 
-        // return average time
-        return total / repeat;
+        return total / trials;
     }
 
-    // generate Integer array with random input
-    private static Integer[] genInput(int size) {
-        Integer[] input = new Integer[size];
-        for (int i = 0; i < size; i++) {
-            input[i] = RAND.nextInt(size);
+    private static Integer[] genRandomInput(int inputSize) {
+        Integer[] input = new Integer[inputSize];
+        for (int i = 0; i < inputSize; i++) {
+            input[i] = RAND.nextInt(inputSize);
         }
 
         return input;
     }
 
     private static boolean isQuadratic(String algorithm) {
-        for (String quadratic: QUADRATICS) {
-            if (algorithm.equals(quadratic)) {
-                return true;
-            }
-        }
-
-        return false;
+        return QUADRATICS.contains(algorithm);
     }
 
     public static void main(String[] args) {
@@ -89,11 +74,16 @@ public class Compare {
             noquadratic = true;
         }
 
-        for (String algorithm: ALGORITHMS) {
-            if (!noquadratic || !isQuadratic(algorithm)) {
-                double time = time(algorithm, size, repeat);
-                System.out.println(String.format("%-12s %.4fs", algorithm, time));
+        try {
+            for (String algorithm: ALGORITHMS) {
+                if (!noquadratic || !isQuadratic(algorithm)) {
+                    double time = time(algorithm, size, repeat);
+                    System.out.println(String.format("%-12s %.4fs", algorithm, time));
+                }
             }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
+
     }
 }
