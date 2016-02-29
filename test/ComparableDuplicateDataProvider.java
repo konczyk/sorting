@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class ComparableDuplicateDataProvider {
 
     public static final Comparable[] EXPECTED = {
@@ -26,9 +28,21 @@ public class ComparableDuplicateDataProvider {
         }
 
         @Override
-        public boolean equals(Object other) {
-            return this.param1.equals(((Item) other).param1) &&
-                   this.param2 == ((Item) other).param2;
+        public boolean equals(Object o) {
+            if (this == o) {
+                return true;
+            }
+            if (o == null || getClass() != o.getClass()) {
+                return false;
+            }
+            Item item = (Item) o;
+
+            return param2 == item.param2 && Objects.equals(param1, item.param1);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(param1, param2);
         }
 
         @Override
