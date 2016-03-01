@@ -27,22 +27,20 @@ public class Quick {
             int partition(T[] input, int left, int right) {
 
         T partitionItem = input[left];
-        int i = left + 1;
-        int j = right;
+        int i = left;
+        int j = right + 1;
         while (true) {
             // left scan for the item to swap
-            while (input[i].compareTo(partitionItem) < 0) {
+            while (input[++i].compareTo(partitionItem) < 0) {
                 if (i == right) {
                     break;
                 }
-                i++;
             }
             // right scan for the item to swap
-            while (input[j].compareTo(partitionItem) > 0) {
+            while (input[--j].compareTo(partitionItem) > 0) {
                 if (j == left) {
                     break;
                 }
-                j--;
             }
 
             if (i >= j) {

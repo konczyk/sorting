@@ -34,29 +34,27 @@ public class QuickX {
 
             // fast 3-way partitioning (Bentley-McIlroy)
             T partitionItem = input[left];
-            int i = left + 1;
-            int j = right;
-            int p = left + 1;
-            int q = right;
+            int i = left;
+            int j = right + 1;
+            int p = left;
+            int q = right + 1;
             while (true) {
                 // left scan for the item to swap
-                while (input[i].compareTo(partitionItem) < 0) {
+                while (input[++i].compareTo(partitionItem) < 0) {
                     if (i == right) {
                         break;
                     }
-                    i++;
                 }
                 // right scan for the item to swap
-                while (input[j].compareTo(partitionItem) > 0) {
+                while (input[--j].compareTo(partitionItem) > 0) {
                     if (j == left) {
                         break;
                     }
-                    j--;
                 }
 
                 // put equal item in place when scan indices cross
                 if (i == j && input[i].compareTo(partitionItem) == 0) {
-                    swap(input, p++, i);
+                    swap(input, ++p, i);
                 }
 
                 if (i >= j) {
@@ -66,18 +64,19 @@ public class QuickX {
                 swap(input, i, j);
                 // put equal items in place
                 if (input[i].compareTo(partitionItem) == 0) {
-                    swap(input, p++, i);
+                    swap(input, ++p, i);
                 }
                 if (input[j].compareTo(partitionItem) == 0) {
-                    swap(input, q--, j);
+                    swap(input, --q, j);
                 }
             }
 
             // re-swap to maintain the original quick sort invariant
-            for (int k = left; k < p; k++) {
+            i = j + 1;
+            for (int k = left; k <= p; k++) {
                 swap(input, k, j--);
             }
-            for (int k = right; k > q; k--) {
+            for (int k = right; k >= q; k--) {
                 swap(input, k, i++);
             }
 
