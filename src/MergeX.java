@@ -14,7 +14,7 @@ public class MergeX {
     private static <T extends Comparable<T>>
             void sort(T[] input, T[] tmp, int left, int right) {
 
-        if (right - left <= INSERTION_THRESHOLD) {
+        if (right - left + 1 <= INSERTION_THRESHOLD) {
             insertionSort(input, left, right);
         } else {
             int mid = (left + right) / 2;
