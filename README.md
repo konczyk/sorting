@@ -29,6 +29,18 @@ array and optimizes time taken to copy temp arrays.
 
 Bottom-up version does not use recursion.
 
+## Quick sort
+
+Uses ~2 N log N compares on average to sort an array of length N with distinct
+keys and ~N<sup>2</sup>/2 compares in the worst case (very unlikely due to
+random shuffling).
+
+Improved version uses insertion sort for small subarrays, median of small
+sample as a partitioning item and fast 3-way partitioning.
+
+3-way version partitions the array into three parts to reduce the time of sort
+for arrays with large number of duplicates.
+
 ## Examples
 
 Build a jar file:
@@ -36,7 +48,7 @@ Build a jar file:
     $ ./gradlew assemble
 
 Compare average running time using a randomly generated array of 10000 integers
-and 50 trials for each algorithm:
+(ranged 1 to 10000) and 50 trials for each algorithm:
 
     $ java -cp build/libs/sorting.jar Compare -i 10000 -t 50
 
@@ -48,9 +60,12 @@ and 50 trials for each algorithm:
     Merge        0.0025s
     MergeX       0.0018s
     MergeB       0.0022s
+    Quick        0.0021s
+    QuickX       0.0022s
+    Quick3       0.0026s
 
 Compare average running time using a randomly generated array of 1000000
-integers and 50 trials for each, non-quadratic algorithm:
+integers (ranged 1 to 1000000) and 50 trials for each, non-quadratic algorithm:
 
     $ java -cp build/libs/sorting.jar Compare -i 1000000 -t 50 -nq
 
@@ -59,3 +74,6 @@ integers and 50 trials for each, non-quadratic algorithm:
     Merge        0.2665s
     MergeX       0.2363s
     MergeB       0.3224s
+    Quick        0.3435s
+    QuickX       0.2646s
+    Quick3       0.4855s

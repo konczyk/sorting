@@ -18,7 +18,10 @@ public class Compare {
         "Shell",
         "Merge",
         "MergeX",
-        "MergeB");
+        "MergeB",
+        "Quick",
+        "QuickX",
+        "Quick3");
 
     private static final List<String> QUADRATICS = Arrays.asList(
         "Selection",
@@ -56,7 +59,7 @@ public class Compare {
     private static Integer[] genRandomInput(int inputSize) {
         Integer[] input = new Integer[inputSize];
         for (int i = 0; i < inputSize; i++) {
-            input[i] = RAND.nextInt(inputSize);
+            input[i] = 1 + RAND.nextInt(inputSize);
         }
 
         return input;
