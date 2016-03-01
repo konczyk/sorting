@@ -77,3 +77,17 @@ integers (ranged 1 to 1000000) and 50 trials for each, non-quadratic algorithm:
     Quick        0.3435s
     QuickX       0.2646s
     Quick3       0.4855s
+
+Compare average running time using a randomly generated array of 10000000
+integers (ranged 1 to 1000) and 50 trials for each, non-quadratic algorithm:
+
+    $ java -cp build/libs/sorting.jar Compare -i 10000000 -b 1000 -t 50 -nq
+
+    Built-in     2.0817s
+    Shell        10.4446s
+    Merge        2.9289s
+    MergeX       2.6283s
+    MergeB       3.5679s
+    Quick        4.4617s
+    QuickX       1.9177s
+    Quick3       5.0585s

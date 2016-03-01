@@ -8,8 +8,6 @@ import java.util.Random;
  */
 public class Compare {
 
-    private static final Random RAND = new Random();
-
     private static final List<String> ALGORITHMS = Arrays.asList(
         "Built-in",
         "Selection",
@@ -28,7 +26,58 @@ public class Compare {
         "Insertion",
         "InsertionX");
 
-    private static void sort(String algorithm, Integer[] input) {
+    private final Random RAND = new Random();
+
+    private final int inputSize;
+    private final int trials;
+    private final int bound;
+    private final boolean nonQuadratic;
+
+    public Compare(int inputSize, int trials, int bound, boolean nonQuadratic) {
+        this.inputSize = inputSize;
+        this.trials = trials;
+        this.bound = bound;
+        this.nonQuadratic = nonQuadratic;
+    }
+
+    public void run() {
+        String format = "%-12s %.4fs";
+        for (String algorithm: ALGORITHMS) {
+            if (!nonQuadratic || !isQuadratic(algorithm)) {
+                double avgTime= time(algorithm);
+                System.out.println(String.format(format, algorithm, avgTime));
+            }
+        }
+    }
+
+    private static boolean isQuadratic(String algorithm) {
+        return QUADRATICS.contains(algorithm);
+    }
+
+    // compute average sorting time
+    private double time(String algorithm) {
+        double total = 0;
+        for (int i = 0; i < trials; i++) {
+            long start = System.currentTimeMillis();
+            sort(algorithm, genRandomInput());
+
+            long end = System.currentTimeMillis();
+            total += ((end - start) / 1000.0);
+        }
+
+        return total / trials;
+    }
+
+    private Integer[] genRandomInput() {
+        Integer[] input = new Integer[inputSize];
+        for (int i = 0; i < inputSize; i++) {
+            input[i] = 1 + RAND.nextInt(bound);
+        }
+
+        return input;
+    }
+
+    private void sort(String algorithm, Integer[] input) {
         if (algorithm.equals("Built-in")) {
             Arrays.sort(input);
         } else {
@@ -42,47 +91,12 @@ public class Compare {
         }
     }
 
-    // compute average sorting time
-    private static double time(String algorithm, int inputSize, int trials) {
-        double total = 0;
-        for (int i = 0; i < trials; i++) {
-            long start = System.currentTimeMillis();
-            sort(algorithm, genRandomInput(inputSize));
-
-            long end = System.currentTimeMillis();
-            total += ((end - start) / 1000.0);
-        }
-
-        return total / trials;
-    }
-
-    private static Integer[] genRandomInput(int inputSize) {
-        Integer[] input = new Integer[inputSize];
-        for (int i = 0; i < inputSize; i++) {
-            input[i] = 1 + RAND.nextInt(inputSize);
-        }
-
-        return input;
-    }
-
-    private static boolean isQuadratic(String algorithm) {
-        return QUADRATICS.contains(algorithm);
-    }
-
-    private static void run(int inputSize, int trials, boolean nonQuadtratic) {
-        String format = "%-12s %.4fs";
-        for (String algorithm: ALGORITHMS) {
-            if (!nonQuadtratic || !isQuadratic(algorithm)) {
-                double time = time(algorithm, inputSize, trials);
-                System.out.println(String.format(format, algorithm, time));
-            }
-        }
-    }
-
     public static void main(String[] args) {
         CompareConfig conf = CompareConfig.parseConfig(args);
+        Compare compare = new Compare(conf.getInputSize(), conf.getTrials(),
+                conf.getBound(), conf.isNonQuadratic());
         try {
-            run(conf.getInputSize(), conf.getTrials(), conf.isNonQuadratic());
+            compare.run();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

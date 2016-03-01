@@ -17,6 +17,12 @@ public class CompareConfig {
     private int trials = 0;
 
     @Parameter(
+        names = {"--bound", "-b"},
+        description = "Max value for generated number (input size if not set)",
+        validateWith = PositiveIntegerValidator.class)
+    private int bound = inputSize;
+
+    @Parameter(
         names = {"--non-quadratic", "-nq"},
         description = "Compare algorithms with non-quadratic running time only")
     private boolean nonQuadtratic = false;
@@ -33,6 +39,10 @@ public class CompareConfig {
 
     public int getTrials() {
         return trials;
+    }
+
+    public int getBound() {
+        return bound > 0 ? bound : inputSize;
     }
 
     public boolean isNonQuadratic() {
