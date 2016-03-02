@@ -52,7 +52,7 @@ public class CompareConfig {
         return nonQuadtratic;
     }
 
-    public static CompareConfig parseConfig(String args[]) {
+    public static CompareConfig parseConfig(String[] args) {
         CompareConfig config = new CompareConfig();
         if (args.length == 0) {
             new JCommander(config).usage();

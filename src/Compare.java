@@ -26,7 +26,7 @@ public class Compare {
         "Insertion",
         "InsertionX");
 
-    private final Random RAND = new Random();
+    private final Random rand = new Random();
 
     private final int inputSize;
     private final int trials;
@@ -44,7 +44,7 @@ public class Compare {
         String format = "%-12s %.4fs";
         for (String algorithm: ALGORITHMS) {
             if (!nonQuadratic || !isQuadratic(algorithm)) {
-                double avgTime= time(algorithm);
+                double avgTime = time(algorithm);
                 System.out.println(String.format(format, algorithm, avgTime));
             }
         }
@@ -71,7 +71,7 @@ public class Compare {
     private Integer[] genRandomInput() {
         Integer[] input = new Integer[inputSize];
         for (int i = 0; i < inputSize; i++) {
-            input[i] = 1 + RAND.nextInt(bound);
+            input[i] = 1 + rand.nextInt(bound);
         }
 
         return input;
