@@ -1,5 +1,3 @@
-import java.util.Random;
-
 /**
  * Sorts an array using improved quick sort algorithm
  */
@@ -127,17 +125,6 @@ public class QuickX {
         }
 
         return i;
-    }
-
-    // shuffle array elements in uniformly random order
-    private static void shuffle(Object[] input) {
-        Random rand = new Random();
-        for (int i = 0; i < input.length; i++) {
-            int idx = i + rand.nextInt(input.length - i);
-            Object temp = input[i];
-            input[i] = input[idx];
-            input[idx] = temp;
-        }
     }
 
     // swap input array items indexed by i and j
