@@ -17,7 +17,7 @@ public class MergeX {
         if (right - left + 1 <= INSERTION_THRESHOLD) {
             insertionSort(input, left, right);
         } else {
-            int mid = (left + right) / 2;
+            int mid = left + (right - left) / 2;
             // recursive calls with swapped input and tmp
             // this way we don't need to copy from input to tmp before merge
             sort(tmp, input, left, mid);

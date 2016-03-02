@@ -98,7 +98,7 @@ public class QuickX {
             int ninther(T[] input, int left, int right) {
 
         int delta = (right - left + 1) / 8;
-        int mid = (left + right) / 2;
+        int mid = left + (right - left) / 2;
         int med1 = median3(input, left, left + delta, left + 2*delta);
         int med2 = median3(input, mid - delta, mid, mid + delta);
         int med3 = median3(input, right - 2*delta, right - delta, right);
