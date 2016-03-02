@@ -1,10 +1,11 @@
-import static org.junit.Assert.assertThat;
 import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+
+import junitparams.JUnitParamsRunner;
+import junitparams.Parameters;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import junitparams.*;
 
 @RunWith(JUnitParamsRunner.class)
 public class MergeTest {
