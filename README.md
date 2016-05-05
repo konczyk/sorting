@@ -41,6 +41,11 @@ sample as a partitioning item and fast 3-way partitioning.
 3-way version partitions the array into three parts to reduce the time of sort
 for arrays with large number of duplicates.
 
+## Heap sort
+
+Uses fewer than 2N log N + 2N compares and half that many exchanges to sort N
+items. The 2N term covers the cost of heap construction.
+
 ## Examples
 
 Build a jar file:
@@ -52,42 +57,45 @@ Compare average running time using a randomly generated array of 10000 integers
 
     $ java -cp build/libs/sorting.jar Compare -i 10000 -t 50
 
-    Built-in     0.0042s
-    Selection    0.2270s
-    Insertion    0.1065s
-    InsertionX   0.0668s
-    Shell        0.0019s
+    Built-in     0.0047s
+    Selection    0.2227s
+    Insertion    0.1040s
+    InsertionX   0.0653s
+    Shell        0.0020s
     Merge        0.0025s
-    MergeX       0.0018s
-    MergeB       0.0022s
-    Quick        0.0021s
+    MergeX       0.0019s
+    MergeB       0.0025s
+    Quick        0.0020s
     QuickX       0.0022s
-    Quick3       0.0026s
+    Quick3       0.0020s
+    Heap         0.0018s
 
 Compare average running time using a randomly generated array of 1000000
 integers (ranged 1 to 1000000) and 50 trials for each, non-quadratic algorithm:
 
     $ java -cp build/libs/sorting.jar Compare -i 1000000 -t 50 -nq
 
-    Built-in     0.2526s
-    Shell        0.9120s
-    Merge        0.2665s
-    MergeX       0.2363s
-    MergeB       0.3224s
-    Quick        0.3435s
-    QuickX       0.2646s
-    Quick3       0.4855s
+    Built-in     0.2591s
+    Shell        0.8473s
+    Merge        0.2610s
+    MergeX       0.2393s
+    MergeB       0.3207s
+    Quick        0.3479s
+    QuickX       0.2251s
+    Quick3       0.4726s
+    Heap         0.5648s
 
 Compare average running time using a randomly generated array of 10000000
 integers (ranged 1 to 1000) and 50 trials for each, non-quadratic algorithm:
 
     $ java -cp build/libs/sorting.jar Compare -i 10000000 -b 1000 -t 50 -nq
 
-    Built-in     2.0817s
-    Shell        10.4446s
-    Merge        2.9289s
-    MergeX       2.6283s
-    MergeB       3.5679s
-    Quick        4.4617s
-    QuickX       1.9177s
-    Quick3       5.0585s
+    Built-in     2.0912s
+    Shell        10.5695s
+    Merge        2.9541s
+    MergeX       2.6615s
+    MergeB       3.5806s
+    Quick        4.6508s
+    QuickX       1.8853s
+    Quick3       5.0418s
+    Heap         6.2105s

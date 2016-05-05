@@ -19,7 +19,8 @@ public class Compare {
         "MergeB",
         "Quick",
         "QuickX",
-        "Quick3");
+        "Quick3",
+        "Heap");
 
     private static final List<String> QUADRATICS = Arrays.asList(
         "Selection",
